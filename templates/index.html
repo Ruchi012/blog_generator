@@ -1,371 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Roadmap Drafts</title>
-<style>
-  :root{
-    --navy: #0F2A43;
-    --navy-deep: #0A1F35;
-    --grid: #24486C;
-    --panel: #16334F;
-    --panel-line: #2D5478;
-    --paper: #EDF3F8;
-    --ink: #0F2A43;
-    --ink-soft: #4A6580;
-    --amber: #FFC857;
-    --amber-dim: #C99A3E;
-    --error: #FF8A80;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:
-      repeating-linear-gradient(0deg, transparent, transparent 27px, var(--grid) 27px, var(--grid) 28px),
-      repeating-linear-gradient(90deg, transparent, transparent 27px, var(--grid) 27px, var(--grid) 28px);
-    background-color: var(--navy);
-    font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
-    color: var(--paper);
-    min-height: 100vh;
-    padding: 32px;
-    position: relative;
-  }
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
-  .display{font-family:'Space Grotesk', sans-serif;}
-  .mono{font-family:'IBM Plex Mono', monospace;}
-
-  .crop{position:fixed; width:22px; height:22px; border-color:var(--amber-dim); opacity:.8;}
-  .crop.tl{top:14px; left:14px; border-top:2px solid var(--amber-dim); border-left:2px solid var(--amber-dim);}
-  .crop.tr{top:14px; right:14px; border-top:2px solid var(--amber-dim); border-right:2px solid var(--amber-dim);}
-  .crop.bl{bottom:14px; left:14px; border-bottom:2px solid var(--amber-dim); border-left:2px solid var(--amber-dim);}
-  .crop.br{bottom:14px; right:14px; border-bottom:2px solid var(--amber-dim); border-right:2px solid var(--amber-dim);}
-
-  header{
-    max-width:1180px; margin: 0 auto 28px auto;
-    display:flex; align-items:baseline; justify-content:space-between;
-    border-bottom: 1px solid var(--panel-line);
-    padding-bottom: 18px;
-  }
-  .brand{display:flex; align-items:center; gap:12px;}
-  .brand-mark{
-    width:34px; height:34px; border:2px solid var(--amber);
-    display:flex; align-items:center; justify-content:center;
-    transform: rotate(45deg);
-    flex-shrink:0;
-  }
-  .brand-mark span{transform: rotate(-45deg); font-size:13px; color:var(--amber);}
-  h1{font-size: 22px; letter-spacing:0.04em; margin:0; text-transform:uppercase;}
-  .subtitle{font-size:12px; color:var(--ink-soft); margin-top:2px;}
-  .sheet-no{font-size:11px; color:var(--ink-soft); text-align:right; line-height:1.6;}
-
-  .layout{
-    max-width:1180px; margin:0 auto;
-    display:grid; grid-template-columns: 380px 1fr; gap:34px;
-    align-items:start;
-  }
-  @media (max-width: 880px){ .layout{grid-template-columns:1fr;} }
-
-  .panel{
-    background: var(--panel);
-    border:1px solid var(--panel-line);
-    position:relative;
-  }
-  .panel::before{
-    content:"";
-    position:absolute; inset:6px;
-    border:1px dashed var(--panel-line);
-    pointer-events:none;
-  }
-  .panel-head{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:14px 20px; border-bottom:1px solid var(--panel-line);
-  }
-  .panel-head .label{font-size:11px; letter-spacing:0.12em; color:var(--amber); text-transform:uppercase;}
-  .panel-head .rev{font-size:10px; color:var(--ink-soft);}
-  .panel-body{padding:22px 20px 26px 20px;}
-
-  .field{margin-bottom:18px;}
-  .field label{
-    display:block; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
-    color:var(--ink-soft); margin-bottom:7px;
-  }
-  .field .idx{color:var(--amber); margin-right:6px;}
-  input[type=text], select, textarea{
-    width:100%; background: var(--navy-deep); border:1px solid var(--panel-line);
-    color: var(--paper); padding:10px 12px; font-size:14px; font-family:inherit;
-    outline:none;
-  }
-  input[type=text]:focus, select:focus, textarea:focus{border-color: var(--amber);}
-  textarea{resize:vertical; min-height:64px;}
-  select{appearance:none; -webkit-appearance:none; background-image:
-      linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%),
-      linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%);
-    background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
-    background-size: 5px 5px, 5px 5px; background-repeat:no-repeat;}
-
-  .stamp-btn{
-    width:100%; margin-top:6px;
-    background: transparent; border:2px solid var(--amber); color: var(--amber);
-    font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:0.08em;
-    text-transform:uppercase; font-size:13px; padding:13px 10px; cursor:pointer;
-    transition: all .15s ease;
-  }
-  .stamp-btn:hover:not(:disabled){ background: var(--amber); color: var(--navy-deep); }
-  .stamp-btn:disabled{opacity:.5; cursor:default;}
-
-  .output-empty{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    min-height:420px; text-align:center; color: var(--ink-soft); gap:10px;
-  }
-  .output-empty .glyph{font-size:34px; color:var(--panel-line);}
-  .output-empty .msg{font-size:13px; max-width:280px; line-height:1.6;}
-
-  .loading-wrap{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    min-height:420px; gap:16px;
-  }
-  .compass{width:54px; height:54px; animation: spin 1.8s linear infinite;}
-  @keyframes spin{ to { transform: rotate(360deg); } }
-  .loading-text{font-size:12px; color:var(--amber); letter-spacing:0.08em; text-transform:uppercase;}
-
-  .draft{
-    background: var(--paper); color: var(--ink);
-    padding: 34px 38px; min-height:420px;
-    font-family:'IBM Plex Sans', sans-serif;
-    line-height:1.7; font-size:15px;
-  }
-  .draft h1, .draft h2, .draft h3{font-family:'Space Grotesk', sans-serif; color:var(--navy-deep); margin-top:1.3em;}
-  .draft h1{font-size:26px; margin-top:0;}
-  .draft h2{font-size:19px; border-bottom:2px solid var(--amber); padding-bottom:4px; display:inline-block;}
-  .draft h3{font-size:16px;}
-  .draft p{margin:0.9em 0;}
-  .draft ul, .draft ol{padding-left:22px;}
-  .draft strong{color:var(--navy-deep);}
-  .draft blockquote{border-left:3px solid var(--amber-dim); margin:1em 0; padding:2px 16px; color:var(--ink-soft); font-style:italic;}
-
-  .toolbar{display:flex; gap:10px; padding:12px 20px; border-top:1px solid var(--panel-line);}
-  .tool-btn{
-    background:transparent; border:1px solid var(--panel-line); color:var(--paper);
-    font-size:11px; letter-spacing:0.06em; text-transform:uppercase; padding:8px 14px;
-    cursor:pointer; font-family:'IBM Plex Mono', monospace;
-  }
-  .tool-btn:hover{border-color: var(--amber); color: var(--amber);}
-
-  .error-box{
-    margin: 20px; padding:14px 16px; border:1px solid var(--error); color: var(--error);
-    font-size:13px; background: rgba(255,138,128,0.08);
-  }
-
-  footer{max-width:1180px; margin:26px auto 0 auto; font-size:10px; color:var(--ink-soft); letter-spacing:0.05em; text-transform:uppercase; text-align:center;}
-</style>
-</head>
-<body>
-
-<div class="crop tl"></div><div class="crop tr"></div><div class="crop bl"></div><div class="crop br"></div>
-
-<header>
-  <div class="brand">
-    <div class="brand-mark"><span>&#9670;</span></div>
-    <div>
-      <h1 class="display">Roadmap Drafts</h1>
-      <div class="subtitle mono">Blog draft fabrication for AI product &amp; strategy roadmaps</div>
-    </div>
-  </div>
-  <div class="sheet-no mono">SHEET 01 / DRAFT-GEN<br>ENGINE: GROQ</div>
-</header>
-
-<div class="layout">
-
-  <div class="panel">
-    <div class="panel-head">
-      <span class="label mono">Spec Sheet</span>
-      <span class="rev mono">REV A</span>
-    </div>
-    <div class="panel-body">
-
-      <div class="field">
-        <label><span class="idx mono">01</span>Roadmap Topic</label>
-        <textarea id="topic" placeholder="e.g. Our path to agentic coding assistants by 2027"></textarea>
-      </div>
-
-      <div class="field">
-        <label><span class="idx mono">02</span>Reader</label>
-        <select id="audience">
-          <option value="executives and business leaders">Executives &amp; leadership</option>
-          <option value="engineers and technical practitioners">Engineers &amp; practitioners</option>
-          <option value="investors and analysts">Investors &amp; analysts</option>
-          <option value="a general tech-curious audience" selected>General tech-curious readers</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label><span class="idx mono">03</span>Tone</label>
-        <select id="tone">
-          <option value="confident and visionary" selected>Confident &amp; visionary</option>
-          <option value="precise and technical">Precise &amp; technical</option>
-          <option value="conversational and grounded">Conversational &amp; grounded</option>
-          <option value="candid, including tradeoffs and risks">Candid about tradeoffs</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label><span class="idx mono">04</span>Roadmap Type</label>
-        <select id="focus">
-          <option value="a product roadmap" selected>Product roadmap</option>
-          <option value="a research roadmap">Research roadmap</option>
-          <option value="a company-wide AI strategy roadmap">Company AI strategy</option>
-          <option value="an engineering/infrastructure roadmap">Engineering &amp; infra roadmap</option>
-        </select>
-      </div>
-
-      <button class="stamp-btn display" id="genBtn" onclick="generateDraft()">Draft &rarr;</button>
-    </div>
-  </div>
-
-  <div class="panel" id="outputPanel">
-    <div class="panel-head">
-      <span class="label mono">Draft Output</span>
-      <span class="rev mono" id="wordCount"></span>
-    </div>
-    <div id="outputBody">
-      <div class="output-empty">
-        <div class="glyph">&#128441;</div>
-        <div class="msg mono">Fill in the spec sheet and press Draft to generate a blog post.</div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<footer>Generated drafts are a starting point — review before publishing.</footer>
-
-<script>
-function escapeHtml(s){
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-// Minimal markdown -> HTML
-function renderMarkdown(md){
-  const lines = md.split('\n');
-  let html = '';
-  let inList = null; // 'ul' | 'ol'
-  let inQuote = false;
-
-  function closeList(){
-    if(inList){ html += inList === 'ul' ? '</ul>' : '</ol>'; inList = null; }
-  }
-  function closeQuote(){
-    if(inQuote){ html += '</blockquote>'; inQuote = false; }
-  }
-  function inline(text){
-    text = escapeHtml(text);
-    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    return text;
-  }
-
-  for(let raw of lines){
-    const line = raw.trim();
-    if(line === ''){ closeList(); closeQuote(); continue; }
-
-    let m;
-    if((m = line.match(/^###\s+(.*)/))){ closeList(); closeQuote(); html += `<h3>${inline(m[1])}</h3>`; continue; }
-    if((m = line.match(/^##\s+(.*)/))){ closeList(); closeQuote(); html += `<h2>${inline(m[1])}</h2>`; continue; }
-    if((m = line.match(/^#\s+(.*)/))){ closeList(); closeQuote(); html += `<h1>${inline(m[1])}</h1>`; continue; }
-    if((m = line.match(/^>\s?(.*)/))){ closeList(); if(!inQuote){ html += '<blockquote>'; inQuote = true; } html += `<p>${inline(m[1])}</p>`; continue; }
-    if((m = line.match(/^[-*]\s+(.*)/))){ closeQuote(); if(inList !== 'ul'){ closeList(); html += '<ul>'; inList = 'ul'; } html += `<li>${inline(m[1])}</li>`; continue; }
-    if((m = line.match(/^\d+\.\s+(.*)/))){ closeQuote(); if(inList !== 'ol'){ closeList(); html += '<ol>'; inList = 'ol'; } html += `<li>${inline(m[1])}</li>`; continue; }
-
-    closeList(); closeQuote();
-    html += `<p>${inline(line)}</p>`;
-  }
-  closeList(); closeQuote();
-  return html;
-}
-
-let lastDraftText = '';
-
-async function generateDraft(){
-  const topic = document.getElementById('topic').value.trim();
-  const audience = document.getElementById('audience').value;
-  const tone = document.getElementById('tone').value;
-  const focus = document.getElementById('focus').value;
-  const outputBody = document.getElementById('outputBody');
-  const wordCount = document.getElementById('wordCount');
-  const btn = document.getElementById('genBtn');
-
-  if(!topic){
-    outputBody.innerHTML = `<div class="error-box">Add a roadmap topic in field 01 before drafting.</div>`;
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = 'Drafting…';
-  wordCount.textContent = '';
-  outputBody.innerHTML = `
-    <div class="loading-wrap">
-      <svg class="compass" viewBox="0 0 54 54" fill="none">
-        <circle cx="27" cy="27" r="24" stroke="#2D5478" stroke-width="2"/>
-        <path d="M27 6 L27 48 M6 27 L48 27" stroke="#2D5478" stroke-width="1"/>
-        <path d="M27 27 L40 14" stroke="#FFC857" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="27" cy="27" r="3" fill="#FFC857"/>
-      </svg>
-      <div class="loading-text mono">Plotting the draft…</div>
-    </div>`;
-
-  try{
-    const response = await fetch('/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic, audience, tone, focus })
-    });
-
-    const data = await response.json();
-
-    if(!response.ok){
-      throw new Error(data.error || `Request failed (${response.status})`);
-    }
-
-    lastDraftText = data.draft;
-    const words = data.word_count || lastDraftText.split(/\s+/).filter(Boolean).length;
-    wordCount.textContent = `${words} WORDS`;
-
-    outputBody.innerHTML = `
-      <div class="draft">${renderMarkdown(lastDraftText)}</div>
-      <div class="toolbar">
-        <button class="tool-btn mono" onclick="copyDraft()">Copy Markdown</button>
-        <button class="tool-btn mono" onclick="downloadDraft()">Download .md</button>
-      </div>`;
-
-  } catch(err){
-    outputBody.innerHTML = `<div class="error-box">Draft failed: ${escapeHtml(err.message)}. Try again.</div>`;
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Draft →';
-  }
-}
-
-function copyDraft(){
-  if(!lastDraftText) return;
-  navigator.clipboard.writeText(lastDraftText);
-}
-
-function downloadDraft(){
-  if(!lastDraftText) return;
-  const blob = new Blob([lastDraftText], { type: 'text/markdown' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'roadmap-blog-draft.md';
-  a.click();
-  URL.revokeObjectURL(url);
-}
-</script>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -373,378 +5,298 @@ function downloadDraft(){
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compose</title>
 <style>
-  :root{
-    --bg: #0B0B1A;
-    --violet: #7C5CFC;
-    --coral: #FF6B6B;
-    --cyan: #4ADEDE;
-    --surface: rgba(255,255,255,0.055);
-    --surface-strong: rgba(255,255,255,0.09);
-    --border: rgba(255,255,255,0.12);
-    --text: #F5F3FF;
-    --text-muted: #9C97BE;
-    --text-dim: #6E698F;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background: var(--bg);
-    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
-    color: var(--text);
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    padding: 64px 20px 80px 20px;
-  }
-  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-  .display{ font-family:'Bricolage Grotesque', sans-serif; }
-  .mono{ font-family:'JetBrains Mono', monospace; }
-
-  /* Ambient gradient mesh */
-  .blob{ position: fixed; border-radius: 50%; filter: blur(90px); opacity: 0.5; z-index: 0; pointer-events:none; }
-  .blob-1{ width: 480px; height: 480px; background: var(--violet); top: -160px; left: -120px; animation: drift1 22s ease-in-out infinite; }
-  .blob-2{ width: 420px; height: 420px; background: var(--coral); bottom: -140px; right: -100px; animation: drift2 26s ease-in-out infinite; }
-  .blob-3{ width: 320px; height: 320px; background: var(--cyan); top: 30%; right: 8%; opacity: 0.28; animation: drift3 30s ease-in-out infinite; }
-  @keyframes drift1{ 0%,100%{ transform: translate(0,0); } 50%{ transform: translate(60px, 50px); } }
-  @keyframes drift2{ 0%,100%{ transform: translate(0,0); } 50%{ transform: translate(-50px,-40px); } }
-  @keyframes drift3{ 0%,100%{ transform: translate(0,0) scale(1); } 50%{ transform: translate(-40px,30px) scale(1.08); } }
-  @media (prefers-reduced-motion: reduce){ .blob{ animation: none; } }
-
-  .wrap{ max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
-
-  .masthead{ text-align:center; margin-bottom: 46px; }
-  .badge{
-    display:inline-flex; align-items:center; gap:7px; font-family:'JetBrains Mono', monospace;
-    font-size: 11.5px; letter-spacing: 0.08em; text-transform:uppercase; color: var(--cyan);
-    background: rgba(74,222,222,0.08); border: 1px solid rgba(74,222,222,0.25);
-    padding: 6px 14px; border-radius: 999px; margin-bottom: 20px;
-  }
-  .badge-dot{ width:6px; height:6px; border-radius:50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
-
-  .masthead h1{
-    font-size: 52px; font-weight: 700; margin: 0 0 12px 0; line-height:1.05;
-    background: linear-gradient(120deg, #FFFFFF 20%, var(--violet) 65%, var(--coral) 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .masthead p{ font-size: 16.5px; color: var(--text-muted); margin: 0; }
-
-  .card{
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 26px;
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    padding: 34px 36px;
-    margin-bottom: 26px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+  body {
+    background-color: #FDF0DC;
+    font-family: 'Trebuchet MS', 'Segoe UI', Verdana, sans-serif;
+    margin: 0;
+    padding: 30px 20px 60px 20px;
   }
 
-  .field{ margin-bottom: 24px; }
-  .field-label{
-    font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
-    color: var(--text-muted); margin-bottom: 11px; display:block;
+  .wrap {
+    max-width: 800px;
+    margin: 0 auto;
   }
 
-  textarea{
-    width: 100%; background: rgba(255,255,255,0.04); border: 1.5px solid var(--border);
-    border-radius: 16px; padding: 15px 18px; color: var(--text); font-size: 15.5px;
-    font-family: 'Plus Jakarta Sans', sans-serif; outline: none; resize: vertical; min-height: 66px;
-    line-height: 1.5; transition: border-color .15s ease, background .15s ease;
-  }
-  textarea:focus{ border-color: var(--violet); background: rgba(124,92,252,0.06); }
-  textarea::placeholder{ color: var(--text-dim); }
-
-  .suggestions{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
-  .suggestion-chip{
-    background: transparent; border: 1px dashed var(--border); color: var(--text-dim);
-    font-size: 12px; padding: 6px 12px; border-radius: 999px; cursor:pointer;
-    font-family: 'Plus Jakarta Sans', sans-serif; transition: all .15s ease;
-  }
-  .suggestion-chip:hover{ border-color: var(--cyan); color: var(--cyan); border-style: solid; }
-
-  .chip-row{ display:flex; flex-wrap: wrap; gap: 9px; }
-  .chip{
-    background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text-muted);
-    font-size: 13.5px; font-weight: 500; padding: 9px 17px; border-radius: 999px; cursor:pointer;
-    font-family: 'Plus Jakarta Sans', sans-serif; transition: all .15s ease;
-  }
-  .chip:hover{ border-color: rgba(124,92,252,0.5); color: var(--text); }
-  .chip.active{
-    background: linear-gradient(120deg, var(--violet), var(--coral));
-    border-color: transparent; color: #fff;
+  .block {
+    border-radius: 20px;
+    padding: 30px 36px;
+    margin-bottom: 22px;
   }
 
-  .cta-row{ display:flex; justify-content:center; margin-top: 32px; }
-  .cta-btn{
-    display:inline-flex; align-items:center; gap: 10px;
-    background: linear-gradient(120deg, var(--violet), var(--coral));
-    color: #fff; border: none; border-radius: 999px;
-    font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 16px;
-    padding: 15px 34px; cursor: pointer;
-    box-shadow: 0 8px 30px rgba(124,92,252,0.35);
-    transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  /* Header block */
+  .header-block {
+    background-color: #7B5FE0;
+    text-align: center;
+    color: white;
   }
-  .cta-btn:hover:not(:disabled){ transform: translateY(-2px); box-shadow: 0 12px 36px rgba(124,92,252,0.45); }
-  .cta-btn:active:not(:disabled){ transform: translateY(0px); }
-  .cta-btn:disabled{ opacity: 0.6; cursor: default; transform:none; }
-  .cta-btn svg{ width: 18px; height: 18px; }
-
-  /* Output */
-  .result-card{ display:none; }
-  .result-card.visible{ display:block; animation: riseIn .5s ease; }
-  @keyframes riseIn{ from{ opacity:0; transform: translateY(14px); } to{ opacity:1; transform:translateY(0); } }
-
-  .result-meta{
-    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
-    margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border);
+  .header-block h1 {
+    font-size: 42px;
+    margin: 0 0 10px 0;
+    font-weight: 800;
   }
-  .result-meta .tag{
-    font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cyan);
-    background: rgba(74,222,222,0.08); border: 1px solid rgba(74,222,222,0.2);
-    padding: 5px 12px; border-radius: 999px;
-  }
-  .result-meta .wc{ font-family:'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); }
-
-  .draft{ color: var(--text); line-height: 1.8; font-size: 16px; }
-  .draft h1{ font-family:'Bricolage Grotesque', sans-serif; font-size: 28px; font-weight:700; margin: 0 0 16px 0;
-    background: linear-gradient(120deg, #FFFFFF, var(--violet)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .draft h2{ font-family:'Bricolage Grotesque', sans-serif; font-size: 20px; font-weight:600; margin-top: 1.5em; color: var(--coral); }
-  .draft h3{ font-family:'Bricolage Grotesque', sans-serif; font-size: 16.5px; font-weight:600; margin-top: 1.2em; color: var(--text); }
-  .draft p{ margin: 1em 0; color: #E4E1F5; }
-  .draft strong{ color: #fff; }
-  .draft ul, .draft ol{ padding-left: 22px; color: #E4E1F5; }
-  .draft blockquote{ border-left: 3px solid var(--violet); margin: 1.2em 0; padding: 4px 18px; color: var(--text-muted); font-style: italic; }
-
-  .toolbar{ display:flex; gap:10px; margin-top: 24px; padding-top:20px; border-top: 1px solid var(--border); }
-  .tool-btn{
-    background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text);
-    border-radius: 999px; padding: 9px 18px; font-size: 13px; font-family: 'Plus Jakarta Sans', sans-serif;
-    cursor:pointer; font-weight:500; transition: all .15s ease;
-  }
-  .tool-btn:hover{ border-color: var(--violet); background: rgba(124,92,252,0.1); }
-
-  /* Loading */
-  .loading-state{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding: 46px 10px; gap: 18px;
-  }
-  .orb{
-    width: 54px; height: 54px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--violet), var(--coral), var(--cyan));
-    background-size: 200% 200%;
-    animation: orbPulse 1.4s ease-in-out infinite, orbShift 3s ease infinite;
-  }
-  @keyframes orbPulse{ 0%,100%{ transform: scale(1); opacity:1; } 50%{ transform: scale(1.15); opacity:0.75; } }
-  @keyframes orbShift{ 0%{ background-position: 0% 50%; } 50%{ background-position: 100% 50%; } 100%{ background-position: 0% 50%; } }
-  .loading-text{ font-family:'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); }
-  .loading-text .dots::after{ content:'...'; animation: dots 1.2s steps(4) infinite; }
-  @keyframes dots{ 0%{ content:''; } 25%{ content:'.'; } 50%{ content:'..'; } 75%{ content:'...'; } 100%{ content:''; } }
-
-  .error-note{
-    border: 1px solid rgba(255,107,107,0.4); background: rgba(255,107,107,0.08); color: #FFB4B4;
-    padding: 15px 18px; border-radius: 14px; font-size: 14px;
+  .header-block p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.95;
   }
 
-  footer{
-    text-align:center; margin-top: 8px; font-size: 12px; color: var(--text-dim);
-    font-family: 'JetBrains Mono', monospace;
+  /* Section blocks */
+  .pink-block   { background-color: #FCE0EC; }
+  .yellow-block { background-color: #FCF0A0; }
+  .blue-block   { background-color: #D6EEFB; }
+
+  .block h2 {
+    margin: 0 0 20px 0;
+    font-size: 22px;
+    color: #2b2b2b;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 8px;
+  }
+
+  textarea, select {
+    width: 100%;
+    background-color: #ffffff;
+    border: 2px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 60px;
+  }
+
+  .col-2 {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 22px;
+  }
+  .col-2 > div {
+    flex: 1;
+  }
+  @media (max-width: 600px) {
+    .col-2 { flex-direction: column; }
+  }
+
+  .generate-btn {
+    display: block;
+    width: 100%;
+    background-color: #FF6F5E;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2.5px solid #1a1a1a;
+    border-radius: 999px;
+    padding: 16px;
+    cursor: pointer;
+    box-shadow: 3px 4px 0 #1a1a1a;
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  .generate-btn:hover:not(:disabled) {
+    background-color: #ff5b47;
+  }
+  .generate-btn:active:not(:disabled) {
+    transform: translate(2px, 3px);
+    box-shadow: 1px 1px 0 #1a1a1a;
+  }
+  .generate-btn:disabled {
+    opacity: 0.7;
+    cursor: default;
+  }
+
+  #outputBox {
+    background-color: #ffffff;
+    border: 2px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 16px 18px;
+    min-height: 90px;
+    white-space: pre-wrap;
+    font-size: 14.5px;
+    color: #333333;
+    max-height: 420px;
+    overflow-y: auto;
+  }
+  #outputBox.empty {
+    color: #6b6fa0;
+    font-style: italic;
+  }
+
+  .word-count {
+    text-align: right;
+    font-size: 12.5px;
+    color: #557;
+    margin-top: 8px;
+  }
+
+  .toolbar {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+  }
+  .tool-btn {
+    background-color: #ffffff;
+    border: 2px solid #1a1a1a;
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .tool-btn:hover {
+    background-color: #f0f0f0;
+  }
+
+  .error-text {
+    color: #c0392b;
+    font-weight: bold;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: #8a7a5c;
+    margin-top: 10px;
   }
 </style>
 </head>
 <body>
 
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
-
 <div class="wrap">
 
-  <div class="masthead">
-    <!-- <span class="badge"><span class="badge-dot"></span>AI-drafted, human-ready</span> -->
-    <h1 class="display">Compose</h1>
-    <p>Give it a topic. Get a full blog post back in seconds.</p>
+  <div class="block header-block">
+    <h1>Compose</h1>
+    <p>Type a topic, pick a vibe, get a blog post!</p>
   </div>
 
-  <div class="card">
-    <div class="field">
-      <span class="field-label">Topic</span>
-      <textarea id="topic" placeholder="e.g. why I stopped using to-do list apps"></textarea>
-      <div class="suggestions">
-        <button class="suggestion-chip" onclick="fillTopic('why remote work broke my sleep schedule')">remote work &amp; sleep</button>
-        <button class="suggestion-chip" onclick="fillTopic('what my worst hire taught me about interviewing')">a hiring mistake</button>
-        <button class="suggestion-chip" onclick="fillTopic('the case for boring technology')">boring tech</button>
-      </div>
-    </div>
-
-    <div class="field">
-      <span class="field-label">Angle</span>
-      <div class="chip-row" id="angleGroup">
-        <button class="chip active" data-value="an explainer that unpacks a concept">Explainer</button>
-        <button class="chip" data-value="a practical how-to guide">How-to</button>
-        <button class="chip" data-value="a personal essay or story">Personal essay</button>
-        <button class="chip" data-value="an opinion piece or hot take">Hot take</button>
-        <button class="chip" data-value="an industry analysis">Analysis</button>
-      </div>
-    </div>
-
-    <div class="field" style="margin-bottom:0;">
-      <span class="field-label">Voice</span>
-      <div class="chip-row" id="toneGroup">
-        <button class="chip active" data-value="warm and personal">Warm</button>
-        <button class="chip" data-value="sharp and analytical">Sharp</button>
-        <button class="chip" data-value="playful and witty">Playful</button>
-        <button class="chip" data-value="authoritative and expert">Authoritative</button>
-        <button class="chip" data-value="conversational and grounded">Conversational</button>
-      </div>
-    </div>
-
-    <div class="cta-row">
-      <button class="cta-btn" id="genBtn" onclick="generateBlog()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        <span id="genBtnText">Generate post</span>
-      </button>
-    </div>
+  <div class="block pink-block">
+    <h2>What's it about?</h2>
+    <label for="topic">Topic</label>
+    <textarea id="topic" rows="3" placeholder="e.g. why I stopped using to-do list apps"></textarea>
   </div>
 
-  <div class="card result-card" id="resultCard">
-    <div id="outputArea"></div>
+  <div class="block yellow-block">
+    <h2>Pick a style</h2>
+    <div class="col-2">
+      <div>
+        <label for="angle">Angle</label>
+        <select id="angle">
+          <option value="an explainer that unpacks a concept">Explainer</option>
+          <option value="a practical how-to guide">How-to Guide</option>
+          <option value="a personal essay or story">Personal Essay</option>
+          <option value="an opinion piece or hot take">Opinion / Hot Take</option>
+          <option value="an industry analysis">Industry Analysis</option>
+        </select>
+      </div>
+      <div>
+        <label for="tone">Voice</label>
+        <select id="tone">
+          <option value="warm and personal">Warm and Personal</option>
+          <option value="sharp and analytical">Sharp and Analytical</option>
+          <option value="playful and witty">Playful and Witty</option>
+          <option value="authoritative and expert">Authoritative</option>
+          <option value="conversational and grounded">Conversational</option>
+        </select>
+      </div>
+    </div>
+    <button class="generate-btn" id="genBtn" onclick="generateBlog()">Generate Blog Post</button>
   </div>
 
-  <footer>drafts are a starting point — give them a read before you hit publish</footer>
+  <div class="block blue-block">
+    <h2>&#128220; Your blog post</h2>
+    <div id="outputBox" class="empty">Nothing here yet — fill in a topic and hit generate!</div>
+    <div class="word-count" id="wordCount"></div>
+    <div class="toolbar" id="toolbarArea"></div>
+  </div>
+
+  <footer>made with Flask + the Groq API</footer>
+
 </div>
 
 <script>
-let lastDraft = '';
-let angleValue = document.querySelector('#angleGroup .chip.active').dataset.value;
-let toneValue = document.querySelector('#toneGroup .chip.active').dataset.value;
+var lastDraft = "";
 
-document.querySelectorAll('#angleGroup .chip').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('#angleGroup .chip').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    angleValue = btn.dataset.value;
-  });
-});
-document.querySelectorAll('#toneGroup .chip').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('#toneGroup .chip').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    toneValue = btn.dataset.value;
-  });
-});
+function generateBlog() {
+  var topic = document.getElementById("topic").value.trim();
+  var angle = document.getElementById("angle").value;
+  var tone = document.getElementById("tone").value;
+  var outputBox = document.getElementById("outputBox");
+  var wordCount = document.getElementById("wordCount");
+  var toolbarArea = document.getElementById("toolbarArea");
+  var btn = document.getElementById("genBtn");
 
-function fillTopic(text){
-  document.getElementById('topic').value = text;
-  document.getElementById('topic').focus();
-}
+  toolbarArea.innerHTML = "";
+  wordCount.innerHTML = "";
 
-function escapeHtml(s){
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-function renderMarkdown(md){
-  const lines = md.split('\n');
-  let html = '';
-  let inList = null;
-  let inQuote = false;
-
-  function closeList(){ if(inList){ html += inList === 'ul' ? '</ul>' : '</ol>'; inList = null; } }
-  function closeQuote(){ if(inQuote){ html += '</blockquote>'; inQuote = false; } }
-  function inline(text){
-    text = escapeHtml(text);
-    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    return text;
-  }
-
-  for(let raw of lines){
-    const line = raw.trim();
-    if(line === ''){ closeList(); closeQuote(); continue; }
-    let m;
-    if((m = line.match(/^###\s+(.*)/))){ closeList(); closeQuote(); html += `<h3>${inline(m[1])}</h3>`; continue; }
-    if((m = line.match(/^##\s+(.*)/))){ closeList(); closeQuote(); html += `<h2>${inline(m[1])}</h2>`; continue; }
-    if((m = line.match(/^#\s+(.*)/))){ closeList(); closeQuote(); html += `<h1>${inline(m[1])}</h1>`; continue; }
-    if((m = line.match(/^>\s?(.*)/))){ closeList(); if(!inQuote){ html += '<blockquote>'; inQuote = true; } html += `<p>${inline(m[1])}</p>`; continue; }
-    if((m = line.match(/^[-*]\s+(.*)/))){ closeQuote(); if(inList !== 'ul'){ closeList(); html += '<ul>'; inList = 'ul'; } html += `<li>${inline(m[1])}</li>`; continue; }
-    if((m = line.match(/^\d+\.\s+(.*)/))){ closeQuote(); if(inList !== 'ol'){ closeList(); html += '<ol>'; inList = 'ol'; } html += `<li>${inline(m[1])}</li>`; continue; }
-    closeList(); closeQuote();
-    html += `<p>${inline(line)}</p>`;
-  }
-  closeList(); closeQuote();
-  return html;
-}
-
-async function generateBlog(){
-  const topic = document.getElementById('topic').value.trim();
-  const outputArea = document.getElementById('outputArea');
-  const resultCard = document.getElementById('resultCard');
-  const btn = document.getElementById('genBtn');
-  const btnText = document.getElementById('genBtnText');
-
-  if(!topic){
-    resultCard.classList.add('visible');
-    outputArea.innerHTML = `<div class="error-note">Add a topic before generating.</div>`;
+  if (topic === "") {
+    outputBox.classList.remove("empty");
+    outputBox.innerHTML = '<span class="error-text">Please type a topic first!</span>';
     return;
   }
 
   btn.disabled = true;
-  btnText.textContent = 'Generating';
-  resultCard.classList.add('visible');
-  outputArea.innerHTML = `
-    <div class="loading-state">
-      <div class="orb"></div>
-      <div class="loading-text">drafting your post<span class="dots"></span></div>
-    </div>`;
+  btn.innerHTML = "Generating...";
+  outputBox.classList.remove("empty");
+  outputBox.innerHTML = "loading, please wait...";
 
-  try{
-    const response = await fetch('/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic, angle: angleValue, tone: toneValue })
+  fetch("/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ topic: topic, angle: angle, tone: tone })
+  })
+  .then(function(response) {
+    return response.json().then(function(data) {
+      return { ok: response.ok, data: data };
     });
+  })
+  .then(function(result) {
+    btn.disabled = false;
+    btn.innerHTML = "Generate Blog Post";
 
-    const data = await response.json();
-
-    if(!response.ok){
-      throw new Error(data.error || `Request failed (${response.status})`);
+    if (!result.ok) {
+      outputBox.innerHTML = '<span class="error-text">Error: ' + (result.data.error || "something went wrong") + '</span>';
+      return;
     }
 
-    lastDraft = data.draft;
-    const words = data.word_count || lastDraft.split(/\s+/).filter(Boolean).length;
+    lastDraft = result.data.draft;
+    var words = result.data.word_count || lastDraft.split(" ").length;
 
-    outputArea.innerHTML = `
-      <div class="result-meta">
-        <span class="tag">${escapeHtml(toneValue)}</span>
-        <span class="wc">${words} words</span>
-      </div>
-      <div class="draft">${renderMarkdown(lastDraft)}</div>
-      <div class="toolbar">
-        <button class="tool-btn" onclick="copyDraft()">Copy text</button>
-        <button class="tool-btn" onclick="downloadDraft()">Download .md</button>
-      </div>`;
+    outputBox.innerHTML = lastDraft;
+    wordCount.innerHTML = words + " words";
 
-  } catch(err){
-    outputArea.innerHTML = `<div class="error-note">Something went wrong: ${escapeHtml(err.message)}. Try again.</div>`;
-  } finally {
+    toolbarArea.innerHTML =
+      '<button class="tool-btn" onclick="copyDraft()">Copy</button>' +
+      '<button class="tool-btn" onclick="downloadDraft()">Download</button>';
+  })
+  .catch(function(err) {
     btn.disabled = false;
-    btnText.textContent = 'Generate post';
-  }
+    btn.innerHTML = "Generate Blog Post";
+    outputBox.innerHTML = '<span class="error-text">Error: ' + err + '</span>';
+  });
 }
 
-function copyDraft(){
-  if(!lastDraft) return;
+function copyDraft() {
+  if (lastDraft === "") return;
   navigator.clipboard.writeText(lastDraft);
+  alert("copied!");
 }
 
-function downloadDraft(){
-  if(!lastDraft) return;
-  const blob = new Blob([lastDraft], { type: 'text/markdown' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+function downloadDraft() {
+  if (lastDraft === "") return;
+  var blob = new Blob([lastDraft], { type: "text/plain" });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
   a.href = url;
-  a.download = 'blog-draft.md';
+  a.download = "blog-post.txt";
   a.click();
-  URL.revokeObjectURL(url);
 }
 </script>
 
